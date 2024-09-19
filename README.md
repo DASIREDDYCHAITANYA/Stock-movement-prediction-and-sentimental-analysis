@@ -1,8 +1,8 @@
 # Stock-movement-prediction-and-sentimental-analysis
-Overview:
+#Overview:
 This project aims to predict Tesla stock price movements by analyzing sentiment data scraped from social media platforms like Twitter, Reddit, and Telegram. By merging this sentiment data with historical Tesla stock prices, the model forecasts future price trends based on the correlation between user discussions and stock performance.
 
-DATASET PREPARATION:
+#DATASET PREPARATION:
 NOTE: I have prepared in twi ands merged with tesla historical dataset wiht equal dates 
 
 -> SEntiment  Dataset creation using NLP
