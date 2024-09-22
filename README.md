@@ -4,7 +4,7 @@
 This project aims to predict Tesla stock price movements by analyzing sentiment data scraped from social media platforms like Twitter, Reddit, and Telegram. By merging this sentiment data with historical Tesla stock prices, the model forecasts future price trends based on the correlation between user discussions and stock performance.
 
 ## DATASET PREPARATION:
-NOTE: I have prepared in twi ands merged with tesla historical dataset wiht equal dates 
+NOTE: I have prepared in n-times ands merged with different historical stock dataset wiht equal dates 
 
 -> Sentiment  Dataset creation using NLP
 1. Downloading and Loading the Dataset
@@ -229,3 +229,83 @@ Now i have merged all features to a single dataset  with equal dates
 NOTE: I have processed Data of past 4 years . At last i got only 500 records because some authentication problems
 
 -> MODEL TRAINIGL:
+
+Note: I have trained less dataset of 4000 records so Accuracy of my model might be high. I tarined my to predict only the close of stock in a day
+```bash
+import pandas as pd
+dff='/content/drive/My Drive/dhoni/final3.csv'
+d1=pd.read_csv(dff)
+```
+Importing pandas: The first line imports the pandas library, which is used for data manipulation and analysis.
+
+
+File Path: dff is a variable holding the path to the CSV file.
+
+
+Reading CSV: pd.read_csv(dff) loads the CSV file into a pandas DataFrame called d1, which you can then use for analysis and modeling.
+
+
+```bash
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+```
+Importing numpy: Numpy is imported for numerical operations, although it's not explicitly used in this snippet.
+
+
+Importing Linear Regression: The LinearRegression class from sklearn is imported to create a linear regression model.
+
+
+Train-Test Split: The train_test_split function is imported to divide the dataset into training and testing subsets.
+```bash
+lin=LinearRegression()
+x=d1[['Open','Low','High','sentiment_score','Volume']]
+y=d1['Close']
+```
+Initialize Linear Regression Model: An instance of the LinearRegression model is created (though it's not used immediately).
+
+
+Feature Selection: The DataFrame d1 is sliced to create x, which contains the independent variables (features) that you want to use for prediction. These are 'Open', 'Low', 'High', 'sentiment_score', and 'Volume'.
+
+
+Target Variable: The variable y is created to represent the dependent variable (target) you want to predict, which is 'Close'.
+```bash
+X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+
+from sklearn.ensemble import RandomForestRegressor
+r=RandomForestRegressor()
+r.fit(X_train, y_train)
+y_pred = r.score(X_test, y_test)
+print((y_pred))
+
+```
+Data Splitting: The dataset is split into training and testing sets using train_test_split().
+
+
+X_train and y_train will be used to train the model.
+
+
+X_test and y_test will be used to evaluate the model's performance.
+
+
+test_size=0.2 means that 20% of the data will be used for testing.
+
+
+random_state=42 ensures reproducibility of the split.
+
+Importing Random Forest Regressor: The RandomForestRegressor class is imported to create a more complex regression model.
+
+
+Initialize Model: An instance of the RandomForestRegressor is created.
+
+
+Model Fitting: The model is fitted on the training data (X_train, y_train), allowing it to learn the relationship between features and the target variable.
+
+Importing Random Forest Regressor: The RandomForestRegressor class is imported to create a more complex regression model.
+
+
+Initialize Model: An instance of the RandomForestRegressor is created.
+
+
+Model Fitting: The model is fitted on the training data (X_train, y_train), allowing it to learn the relationship between features and the target variable.
+
